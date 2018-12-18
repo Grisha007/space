@@ -10,25 +10,18 @@ import java.time.LocalDate;
 public class Product {
 
     private Long id;
-    private String missionName;
+    private Mission mission;
     private LocalDate acquisitionDate;
-    private BigDecimal firstCoordinate;
-    private BigDecimal secondCoordinate;
-    private BigDecimal thirdCoordinate;
-    private BigDecimal fourthCoordinate;
+    private Coordinates coordinates;
     private BigDecimal productPrice;
     private String productURL;
-    private Mission mission;
 
-    public Product(LocalDate acquisitionDate, BigDecimal firstCoordinate, BigDecimal secondCoordinate, BigDecimal thirdCoordinate, BigDecimal fourthCoordinate, BigDecimal productPrice, String productURL) {
+    public Product(Mission mission, LocalDate acquisitionDate, Coordinates coordinates, BigDecimal productPrice, String productURL) {
+        this.mission = mission;
         this.acquisitionDate = acquisitionDate;
-        this.firstCoordinate = firstCoordinate;
-        this.secondCoordinate = secondCoordinate;
-        this.thirdCoordinate = thirdCoordinate;
-        this.fourthCoordinate = fourthCoordinate;
+        this.coordinates = coordinates;
         this.productPrice = productPrice;
         this.productURL = productURL;
-        this.missionName = mission.getMissionName();
     }
 
     @Id
@@ -39,10 +32,10 @@ public class Product {
         return id;
     }
 
-    @NotNull
-    @Column(name = "MISSION_NAME")
-    public String getMissionName() {
-        return missionName;
+    @ManyToOne
+    @JoinColumn(name = "MISSION_ID")
+    public Mission getMission() {
+        return mission;
     }
 
     @NotNull
@@ -52,27 +45,9 @@ public class Product {
     }
 
     @NotNull
-    @Column(name = "FIRST_COORDINATE")
-    public BigDecimal getFirstCoordinate() {
-        return firstCoordinate;
-    }
-
-    @NotNull
-    @Column(name = "SECOND_COORDINATE")
-    public BigDecimal getSecondCoordinate() {
-        return secondCoordinate;
-    }
-
-    @NotNull
-    @Column(name = "THIRD_COORDINATE")
-    public BigDecimal getThirdCoordinate() {
-        return thirdCoordinate;
-    }
-
-    @NotNull
-    @Column(name = "FOURTH_COORDINATE")
-    public BigDecimal getFourthCoordinate() {
-        return fourthCoordinate;
+    @Column(name = "COORDINATES")
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     @NotNull
@@ -87,38 +62,20 @@ public class Product {
         return productURL;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "MISSION_ID")
-    public Mission getMission() {
-        return mission;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setMissionName(String missionName) {
-        this.missionName = missionName;
+    public void setMission(Mission mission) {
+        this.mission = mission;
     }
 
     public void setAcquisitionDate(LocalDate acquisitionDate) {
         this.acquisitionDate = acquisitionDate;
     }
 
-    public void setFirstCoordinate(BigDecimal firstCoordinate) {
-        this.firstCoordinate = firstCoordinate;
-    }
-
-    public void setSecondCoordinate(BigDecimal secondCoordinate) {
-        this.secondCoordinate = secondCoordinate;
-    }
-
-    public void setThirdCoordinate(BigDecimal thirdCoordinate) {
-        this.thirdCoordinate = thirdCoordinate;
-    }
-
-    public void setFourthCoordinate(BigDecimal fourthCoordinate) {
-        this.fourthCoordinate = fourthCoordinate;
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     public void setProductPrice(BigDecimal productPrice) {
@@ -127,9 +84,5 @@ public class Product {
 
     public void setProductURL(String productURL) {
         this.productURL = productURL;
-    }
-
-    public void setMission(Mission mission) {
-        this.mission = mission;
     }
 }

@@ -17,13 +17,14 @@ public class Mission {
     private String missionName;
     private LocalDate missionStartDate;
     private LocalDate missionFinishDate;
+    private ImageryType imageryType;
     private List<Product> products;
-    protected ImageryType imageryType;
 
-    public Mission(String missionName, LocalDate missionStartDate, LocalDate missionFinishDate) {
+    public Mission(String missionName, LocalDate missionStartDate, LocalDate missionFinishDate, ImageryType imageryType) {
         this.missionName = missionName;
         this.missionStartDate = missionStartDate;
         this.missionFinishDate = missionFinishDate;
+        this.imageryType = imageryType;
         products = new ArrayList<>();
     }
 
@@ -53,18 +54,18 @@ public class Mission {
         return missionFinishDate;
     }
 
+    @NotNull
+    @Column(name = "IMAGERY_TYPE")
+    public ImageryType getImageryType() {
+        return imageryType;
+    }
+
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "mission"
     )
     public List<Product> getProducts() {
         return products;
-    }
-
-    @NotNull
-    @Column(name = "IMAGERY_TYPE")
-    public ImageryType getImageryType() {
-        return imageryType;
     }
 
     public void setId(Long id) {
@@ -83,11 +84,11 @@ public class Mission {
         this.missionFinishDate = missionFinishDate;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public void setImageryType(ImageryType imageryType) {
         this.imageryType = imageryType;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
