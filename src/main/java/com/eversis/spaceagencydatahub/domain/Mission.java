@@ -1,7 +1,4 @@
-package com.eversis.spaceagencydatahub.data.domain;
-
-import com.eversis.spaceagencydatahub.data.imagery.ImageryType;
-import com.eversis.spaceagencydatahub.data.domain.Product;
+package com.eversis.spaceagencydatahub.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

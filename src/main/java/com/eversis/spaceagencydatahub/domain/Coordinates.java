@@ -1,4 +1,4 @@
-package com.eversis.spaceagencydatahub.data.domain;
+package com.eversis.spaceagencydatahub.domain;
 
 import java.math.BigDecimal;
 

@@ -1,6 +1,4 @@
-package com.eversis.spaceagencydatahub.data.domain;
-
-import com.eversis.spaceagencydatahub.data.imagery.ImageryType;
+package com.eversis.spaceagencydatahub.domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,13 +10,14 @@ public class MissionDto {
     private String missionName;
     private LocalDate missionStartDate;
     private LocalDate missionFinishDate;
+    private ImageryType imageryType;
     private List<Product> products;
-    protected ImageryType imageryType;
 
-    public MissionDto(String missionName, LocalDate missionStartDate, LocalDate missionFinishDate) {
+    public MissionDto(String missionName, LocalDate missionStartDate, LocalDate missionFinishDate, ImageryType imageryType) {
         this.missionName = missionName;
         this.missionStartDate = missionStartDate;
         this.missionFinishDate = missionFinishDate;
+        this.imageryType = imageryType;
         products = new ArrayList<>();
     }
 
