@@ -13,7 +13,8 @@ public class MissionDto {
     private ImageryType imageryType;
     private List<Product> products;
 
-    public MissionDto(String missionName, LocalDate missionStartDate, LocalDate missionFinishDate, ImageryType imageryType) {
+    public MissionDto(Long id, String missionName, LocalDate missionStartDate, LocalDate missionFinishDate, ImageryType imageryType) {
+        this.id = id;
         this.missionName = missionName;
         this.missionStartDate = missionStartDate;
         this.missionFinishDate = missionFinishDate;

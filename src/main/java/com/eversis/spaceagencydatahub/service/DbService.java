@@ -34,6 +34,10 @@ public class DbService {
         return productRepository.findById(id);
     }
 
+    public Optional<Mission> getMission(final Long id) {
+        return missionRepository.findById(id);
+    }
+
     public void deleteProduct(final Long id) {
         productRepository.deleteById(id);
     }

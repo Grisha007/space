@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class ProductDto {
     private Long id;
-    private Mission mission;
+    private Long missionId;
     private LocalDate acquisitionDate;
     private BigDecimal firstCoordinate;
     private BigDecimal secondCoordinate;
@@ -14,8 +14,9 @@ public class ProductDto {
     private BigDecimal productPrice;
     private String productURL;
 
-    public ProductDto(Mission mission, LocalDate acquisitionDate, BigDecimal firstCoordinate, BigDecimal secondCoordinate, BigDecimal thirdCoordinate, BigDecimal fourthCoordinate, BigDecimal productPrice, String productURL) {
-        this.mission = mission;
+    public ProductDto(Long id, Long missionId, LocalDate acquisitionDate, BigDecimal firstCoordinate, BigDecimal secondCoordinate, BigDecimal thirdCoordinate, BigDecimal fourthCoordinate, BigDecimal productPrice, String productURL) {
+        this.id = id;
+        this.missionId = missionId;
         this.acquisitionDate = acquisitionDate;
         this.firstCoordinate = firstCoordinate;
         this.secondCoordinate = secondCoordinate;
@@ -32,8 +33,8 @@ public class ProductDto {
         return id;
     }
 
-    public Mission getMission() {
-        return mission;
+    public Long getMissionId() {
+        return missionId;
     }
 
     public LocalDate getAcquisitionDate() {

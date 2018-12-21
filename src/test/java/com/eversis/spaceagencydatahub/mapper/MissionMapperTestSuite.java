@@ -25,7 +25,7 @@ public class MissionMapperTestSuite {
     @Test
     public void testMapToMission() {
         //Given
-        MissionDto missionDto = new MissionDto("Mission one", LocalDate.of(2018, 7, 19), LocalDate.of(2018, 11, 7), ImageryType.PANCHROMATIC);
+        MissionDto missionDto = new MissionDto(1L, "Mission one", LocalDate.of(2018, 7, 19), LocalDate.of(2018, 11, 7), ImageryType.PANCHROMATIC);
 
         //When
         Mission mappedMission = missionMapper.mapToMission(missionDto);

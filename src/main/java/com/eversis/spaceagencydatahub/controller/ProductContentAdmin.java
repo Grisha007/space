@@ -6,7 +6,6 @@ import com.eversis.spaceagencydatahub.mapper.MissionMapper;
 import com.eversis.spaceagencydatahub.mapper.ProductMapper;
 import com.eversis.spaceagencydatahub.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
@@ -28,6 +27,11 @@ public class ProductContentAdmin {
         dbService.saveMission((missionMapper.mapToMission(missionDto)));
     }
 
+    @GetMapping(value = "/mission/{idm}")
+    public MissionDto getMissionById(@PathVariable(name = "idm") long missionId) throws ProductNotFoundException {
+        return missionMapper.mapToMissionDto(dbService.getMission(missionId).orElseThrow(ProductNotFoundException::new));
+    }
+
     @PutMapping(value = "/mission")
     public MissionDto updateMission(@RequestBody MissionDto missionDto) {
         return missionMapper.mapToMissionDto(dbService.saveMission(missionMapper.mapToMission(missionDto)));
@@ -44,7 +48,7 @@ public class ProductContentAdmin {
     }
 
     @GetMapping(value = "/findProduct/{idp}")
-    public ProductDto getProductById(@PathVariable(name = "idp") Long productId) throws ProductNotFoundException {
+    public ProductDto getProductById(@PathVariable(name = "idp") long productId) throws ProductNotFoundException {
         return productMapper.mapToProductDto(dbService.getProduct(productId).orElseThrow(ProductNotFoundException::new));
     }
 

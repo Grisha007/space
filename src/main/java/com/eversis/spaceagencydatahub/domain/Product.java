@@ -30,6 +30,9 @@ public class Product {
         this.productURL = productURL;
     }
 
+    public Product() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull

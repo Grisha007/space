@@ -14,12 +14,12 @@ public class MissionMapper {
     }
 
     public MissionDto mapToMissionDto(Mission mission) {
-        return new MissionDto(mission.getMissionName(), mission.getMissionStartDate(), mission.getMissionFinishDate(), mission.getImageryType());
+        return new MissionDto(mission.getId(), mission.getMissionName(), mission.getMissionStartDate(), mission.getMissionFinishDate(), mission.getImageryType());
     }
 
     public List<MissionDto> mapToMissionDtoList(final List<Mission> missionList) {
         return missionList.stream()
-                .map(m -> new MissionDto(m.getMissionName(), m.getMissionStartDate(), m.getMissionFinishDate(), m.getImageryType()))
+                .map(m -> new MissionDto(m.getId(), m.getMissionName(), m.getMissionStartDate(), m.getMissionFinishDate(), m.getImageryType()))
                 .collect(Collectors.toList());
     }
 }

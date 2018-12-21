@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,10 +24,11 @@ public class ProductMapperTestSuite {
     public void testMapToProduct() {
         //Given
         Mission mission = new Mission("Mission one", LocalDate.of(2018, 7, 19), LocalDate.of(2018, 11, 7), ImageryType.PANCHROMATIC);
-        ProductDto productDto = new ProductDto(mission, LocalDate.of(2018, 12, 7), new BigDecimal(458.85), new BigDecimal(75.21), new BigDecimal(125.63), new BigDecimal(785.5), new BigDecimal(35000.25), "http//:testurlone.com");
+        ProductDto productDto = new ProductDto(1L, mission.getId(), LocalDate.of(2018, 12, 7), new BigDecimal(458.85), new BigDecimal(75.21), new BigDecimal(125.63), new BigDecimal(785.5), new BigDecimal(35000.25), "http//:testurlone.com");
 
         //When
         Product mappedProduct = productMapper.mapToProduct(productDto);
+        mappedProduct.setMission(mission);
 
         //Then
         assertEquals("Mission one", mappedProduct.getMission().getMissionName());
@@ -53,10 +53,6 @@ public class ProductMapperTestSuite {
         ProductDto mappedProductDto = productMapper.mapToProductDto(product);
 
         //Then
-        assertEquals("Mission two", mappedProductDto.getMission().getMissionName());
-        assertEquals(LocalDate.of(2018, 7, 19), mappedProductDto.getMission().getMissionStartDate());
-        assertEquals(LocalDate.of(2018, 11, 7), mappedProductDto.getMission().getMissionFinishDate());
-        assertEquals(ImageryType.MULTISPECTRAL, mappedProductDto.getMission().getImageryType());
         assertEquals(LocalDate.of(2018, 12, 7), mappedProductDto.getAcquisitionDate());
         assertEquals(new BigDecimal(458.85), mappedProductDto.getFirstCoordinate());
         assertEquals(new BigDecimal(75.21), mappedProductDto.getSecondCoordinate());
@@ -78,10 +74,6 @@ public class ProductMapperTestSuite {
 
         //Then
         assertEquals(1, mappedListProductDto.size());
-        assertEquals("Mission three", mappedListProductDto.get(0).getMission().getMissionName());
-        assertEquals(LocalDate.of(2018, 7, 19), mappedListProductDto.get(0).getMission().getMissionStartDate());
-        assertEquals(LocalDate.of(2018, 11, 7), mappedListProductDto.get(0).getMission().getMissionFinishDate());
-        assertEquals(ImageryType.HYPERSPECTRAL, mappedListProductDto.get(0).getMission().getImageryType());
         assertEquals(LocalDate.of(2018, 12, 7), mappedListProductDto.get(0).getAcquisitionDate());
         assertEquals(new BigDecimal(458.85), mappedListProductDto.get(0).getFirstCoordinate());
         assertEquals(new BigDecimal(75.21), mappedListProductDto.get(0).getSecondCoordinate());

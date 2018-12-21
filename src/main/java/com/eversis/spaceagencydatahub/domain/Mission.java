@@ -25,6 +25,9 @@ public class Mission {
         products = new ArrayList<>();
     }
 
+    public Mission() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
