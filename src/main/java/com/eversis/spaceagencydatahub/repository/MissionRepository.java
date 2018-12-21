@@ -2,7 +2,6 @@ package com.eversis.spaceagencydatahub.repository;
 
 import com.eversis.spaceagencydatahub.domain.Mission;
 import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
 import java.util.Optional;
 

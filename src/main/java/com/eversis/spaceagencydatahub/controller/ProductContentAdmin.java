@@ -1,14 +1,13 @@
 package com.eversis.spaceagencydatahub.controller;
 
-import com.eversis.spaceagencydatahub.domain.Mission;
 import com.eversis.spaceagencydatahub.domain.MissionDto;
 import com.eversis.spaceagencydatahub.domain.ProductDto;
+import com.eversis.spaceagencydatahub.mapper.MissionMapper;
+import com.eversis.spaceagencydatahub.mapper.ProductMapper;
 import com.eversis.spaceagencydatahub.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -18,58 +17,39 @@ public class ProductContentAdmin {
     @Autowired
     private DbService dbService;
 
-    @GetMapping(value = "/mission")
-    public void createMission(MissionDto missionDto) {
+    @Autowired
+    private MissionMapper missionMapper;
 
+    @Autowired
+    private ProductMapper productMapper;
+
+    @PostMapping(value = "/mission")
+    public void createMission(@RequestBody MissionDto missionDto) {
+        dbService.saveMission((missionMapper.mapToMission(missionDto)));
     }
 
-    @GetMapping(value = "/mission/{idm}")
-    public MissionDto updateMission(@PathVariable(name = "idm") Long missionId) {
-        return new MissionDto();
+    @PutMapping(value = "/mission")
+    public MissionDto updateMission(@RequestBody MissionDto missionDto) {
+        return missionMapper.mapToMissionDto(dbService.saveMission(missionMapper.mapToMission(missionDto)));
     }
 
-    @GetMapping(value = "/mission/{idm}")
+    @DeleteMapping(value = "/mission/{idm}")
     public void deleteMission(@PathVariable(name = "idm") Long missionId) {
-
+        dbService.deleteMission(missionId);
     }
 
-    @GetMapping(value = "/mission/{idm}/product")
-    public void createProduct(@PathVariable(name = "idm") Long missionId, ProductDto productDto) {
-
+    @PostMapping(value = "/product")
+    public void createProduct(@RequestBody ProductDto productDto) {
+        dbService.saveProduct(productMapper.mapToProduct(productDto));
     }
 
-    @GetMapping(value = "/mission/{idm}/product/{idp}")
-    public void deleteProduct(@PathVariable(name = "idm") Long missionId, @PathVariable(name = "idp") Long productId) {
-
+    @GetMapping(value = "/findProduct/{idp}")
+    public ProductDto getProductById(@PathVariable(name = "idp") Long productId) throws ProductNotFoundException {
+        return productMapper.mapToProductDto(dbService.getProduct(productId).orElseThrow(ProductNotFoundException::new));
     }
 
-    @GetMapping(value = "/mission/{missionName}")
-    public ProductDto getProductByMissionName(@PathVariable(name = "missionName") Mission mission) {
-        return new ProductDto();
+    @DeleteMapping(value = "/product/{idp}")
+    public void deleteProductById(@PathVariable(name = "idp") Long productId) {
+        dbService.deleteProduct(productId);
     }
-
-    @GetMapping(value = "/mission/{idm}/product/{productType}")
-    public ProductDto getProductByProductType(@PathVariable(name = "idm") Long missionId, @PathVariable(name = "productType") ProductDto productDto) {
-        return new ProductDto();
-    }
-
-    @GetMapping(value = "/mission/{idm}/product/{acquisitionDate}")
-    public ProductDto getProductByAcquisitionDate(@PathVariable(name = "idm") Long missionId, @PathVariable(name = "acquisitionDate") ProductDto productDto) {
-        return new ProductDto();
-    }
-
-    @GetMapping(value = "/mission/{idm}/product")
-    public List<ProductDto> getMultipleProducts(@PathVariable(name = "idm") Long missionId, ProductDto productDto) {
-        return new ArrayList<>();
-    }
-
-//    @GetMapping(value = "/mission")
-//    public List<MissionDto> getAllMissions() {
-//        return new ArrayList<>();
-//    }
-//
-//    @GetMapping(value = "/mission/{idm}")
-//    public MissionDto getMission(@PathVariable(name = "idm") Long missionId) {
-//        return new MissionDto();
-//    }
 }

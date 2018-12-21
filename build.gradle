@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.1.RELEASE'
+		springBootVersion = '1.5.16.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -30,4 +30,6 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	compile(group: 'com.h2database', name: 'h2')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-security')
+    compile('io.springfox:springfox-swagger2:2.7.0')
+    compile('io.springfox:springfox-swagger-ui:2.7.0')
 }

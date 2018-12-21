@@ -52,6 +52,7 @@ public class Mission {
     }
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "IMAGERY_TYPE")
     public ImageryType getImageryType() {
         return imageryType;

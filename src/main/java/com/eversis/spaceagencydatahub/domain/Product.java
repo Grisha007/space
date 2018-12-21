@@ -12,14 +12,20 @@ public class Product {
     private Long id;
     private Mission mission;
     private LocalDate acquisitionDate;
-    private Coordinates coordinates;
+    private BigDecimal firstCoordinate;
+    private BigDecimal secondCoordinate;
+    private BigDecimal thirdCoordinate;
+    private BigDecimal fourthCoordinate;
     private BigDecimal productPrice;
     private String productURL;
 
-    public Product(Mission mission, LocalDate acquisitionDate, Coordinates coordinates, BigDecimal productPrice, String productURL) {
+    public Product(Mission mission, LocalDate acquisitionDate, BigDecimal firstCoordinate, BigDecimal secondCoordinate, BigDecimal thirdCoordinate, BigDecimal fourthCoordinate, BigDecimal productPrice, String productURL) {
         this.mission = mission;
         this.acquisitionDate = acquisitionDate;
-        this.coordinates = coordinates;
+        this.firstCoordinate = firstCoordinate;
+        this.secondCoordinate = secondCoordinate;
+        this.thirdCoordinate = thirdCoordinate;
+        this.fourthCoordinate = fourthCoordinate;
         this.productPrice = productPrice;
         this.productURL = productURL;
     }
@@ -45,9 +51,27 @@ public class Product {
     }
 
     @NotNull
-    @Column(name = "COORDINATES")
-    public Coordinates getCoordinates() {
-        return coordinates;
+    @Column(name = "FIRST_COORDINATE")
+    public BigDecimal getFirstCoordinate() {
+        return firstCoordinate;
+    }
+
+    @NotNull
+    @Column(name = "SECOND_COORDINATE")
+    public BigDecimal getSecondCoordinate() {
+        return secondCoordinate;
+    }
+
+    @NotNull
+    @Column(name = "THIRD_COORDINATE")
+    public BigDecimal getThirdCoordinate() {
+        return thirdCoordinate;
+    }
+
+    @NotNull
+    @Column(name = "FOURTH_COORDINATE")
+    public BigDecimal getFourthCoordinate() {
+        return fourthCoordinate;
     }
 
     @NotNull
@@ -74,8 +98,20 @@ public class Product {
         this.acquisitionDate = acquisitionDate;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+    public void setFirstCoordinate(BigDecimal firstCoordinate) {
+        this.firstCoordinate = firstCoordinate;
+    }
+
+    public void setSecondCoordinate(BigDecimal secondCoordinate) {
+        this.secondCoordinate = secondCoordinate;
+    }
+
+    public void setThirdCoordinate(BigDecimal thirdCoordinate) {
+        this.thirdCoordinate = thirdCoordinate;
+    }
+
+    public void setFourthCoordinate(BigDecimal fourthCoordinate) {
+        this.fourthCoordinate = fourthCoordinate;
     }
 
     public void setProductPrice(BigDecimal productPrice) {

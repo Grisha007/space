@@ -7,14 +7,20 @@ public class ProductDto {
     private Long id;
     private Mission mission;
     private LocalDate acquisitionDate;
-    private Coordinates coordinates;
+    private BigDecimal firstCoordinate;
+    private BigDecimal secondCoordinate;
+    private BigDecimal thirdCoordinate;
+    private BigDecimal fourthCoordinate;
     private BigDecimal productPrice;
     private String productURL;
 
-    public ProductDto(Mission mission, LocalDate acquisitionDate, Coordinates coordinates, BigDecimal productPrice, String productURL) {
+    public ProductDto(Mission mission, LocalDate acquisitionDate, BigDecimal firstCoordinate, BigDecimal secondCoordinate, BigDecimal thirdCoordinate, BigDecimal fourthCoordinate, BigDecimal productPrice, String productURL) {
         this.mission = mission;
         this.acquisitionDate = acquisitionDate;
-        this.coordinates = coordinates;
+        this.firstCoordinate = firstCoordinate;
+        this.secondCoordinate = secondCoordinate;
+        this.thirdCoordinate = thirdCoordinate;
+        this.fourthCoordinate = fourthCoordinate;
         this.productPrice = productPrice;
         this.productURL = productURL;
     }
@@ -34,8 +40,20 @@ public class ProductDto {
         return acquisitionDate;
     }
 
-    public Coordinates getCoordinates() {
-        return coordinates;
+    public BigDecimal getFirstCoordinate() {
+        return firstCoordinate;
+    }
+
+    public BigDecimal getSecondCoordinate() {
+        return secondCoordinate;
+    }
+
+    public BigDecimal getThirdCoordinate() {
+        return thirdCoordinate;
+    }
+
+    public BigDecimal getFourthCoordinate() {
+        return fourthCoordinate;
     }
 
     public BigDecimal getProductPrice() {
